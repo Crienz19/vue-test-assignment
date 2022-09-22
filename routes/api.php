@@ -17,3 +17,10 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::prefix('note')->group(function() {
+    Route::get('/', [App\Http\Controllers\NoteController::class, 'index']);
+    Route::get('/{id}/show', [App\Http\Controllers\NoteController::class, 'show']);
+    Route::post('/store', [App\Http\Controllers\NoteController::class, 'store']);
+    Route::patch('/{id}/update', [App\Http\Controllers\NoteController::class, 'update']);
+});
